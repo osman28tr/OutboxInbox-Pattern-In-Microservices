@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Order.API/Order.API.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+  <Project Path="Stock.API/Stock.API.csproj" />
+</Solution>
