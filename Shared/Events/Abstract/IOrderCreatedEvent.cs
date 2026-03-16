@@ -10,6 +10,10 @@ namespace Shared.Events.Abstract
 {
 	public interface IOrderCreatedEvent
 	{
+		public int OrderId { get; set; }
+		public string UserId { get; set; }
+		public decimal TotalPrice { get; set; }
+		public DateTime CreatedDate { get; set; }
 		public List<OrderCreatedMessage> OrderItems { get; set; }
 	}
 }

@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Stock.API.Models.Entities;
 
 namespace Stock.API.Models
 {
 	public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 	{
-		public DbSet<Stock> Stocks { get; set; }
+		public DbSet<OrderInbox> OrderInboxs { get; set; }
 	}
 }
