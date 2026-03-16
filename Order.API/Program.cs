@@ -44,7 +44,7 @@ app.MapPost("/create-order",async (CreateOrderDto createOrderDto,ISendEndpointPr
 
 	OrderCreatedEvent orderCreatedEvent = new OrderCreatedEvent()
 	{
-		CreatedDate = DateTime.Now,
+		CreatedDate = DateTime.UtcNow,
 		TotalPrice = order.TotalPrice,
 		OrderId = order.Id,
 		UserId = order.UserId,

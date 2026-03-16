@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Order.API/Order.API.csproj" />
+  <Project Path="Order.Outbox.Table.Publisher.Service/Order.Outbox.Table.Publisher.Service.csproj" Id="c71619a6-68fd-414f-aead-18bd537ceb23" />
   <Project Path="Shared/Shared.csproj" />
   <Project Path="Stock.API/Stock.API.csproj" />
 </Solution>
