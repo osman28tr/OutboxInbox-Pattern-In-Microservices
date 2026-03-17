@@ -10,6 +10,7 @@ namespace Shared.Events.Abstract
 {
 	public interface IOrderCreatedEvent
 	{
+		public Guid IdempotentToken { get; set; }
 		public int OrderId { get; set; }
 		public string UserId { get; set; }
 		public decimal TotalPrice { get; set; }

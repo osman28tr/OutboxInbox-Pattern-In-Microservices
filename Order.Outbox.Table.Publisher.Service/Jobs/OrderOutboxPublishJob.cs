@@ -35,7 +35,7 @@ namespace Order.Outbox.Table.Publisher.Service.Jobs
 								await _publishEndpoint.Publish(orderCreatedEvent);
 
 								await OrderOutboxPublisherContext.ExecuteAsync($"update OrderOutboxes set ProcessDate = getdate() " +
-									$"where Id = {orderOutbox.Id}");
+									$"where IdempotentToken = '{orderOutbox.IdempotentToken}'");
 							}
 						}
 					}

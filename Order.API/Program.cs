@@ -42,6 +42,8 @@ app.MapPost("/create-order",async (CreateOrderDto createOrderDto,ISendEndpointPr
 	await dbContext.Orders.AddAsync(order);
 	await dbContext.SaveChangesAsync();
 
+	var idempotentToken = Guid.NewGuid();
+
 	OrderCreatedEvent orderCreatedEvent = new OrderCreatedEvent()
 	{
 		CreatedDate = DateTime.UtcNow,
@@ -53,7 +55,8 @@ app.MapPost("/create-order",async (CreateOrderDto createOrderDto,ISendEndpointPr
 			Count = oi.Count,
 			Price = oi.Price,
 			ProductId = oi.ProductId,
-		}).ToList()
+		}).ToList(),
+		IdempotentToken = idempotentToken
 	};
 
 	#region without outbox pattern	
@@ -67,7 +70,8 @@ app.MapPost("/create-order",async (CreateOrderDto createOrderDto,ISendEndpointPr
 		OccuredOn = DateTime.Now,
 		ProcessDate = null,
 		Payload = JsonSerializer.Serialize(orderCreatedEvent),
-		Type = orderCreatedEvent.GetType().Name
+		Type = orderCreatedEvent.GetType().Name,
+		IdempotentToken = idempotentToken
 	};
 	await dbContext.OrderOutboxes.AddAsync(orderOutbox);
 	await dbContext.SaveChangesAsync();

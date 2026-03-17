@@ -11,5 +11,6 @@ namespace Order.API.Models
 		public string UserId { get; set; }
 		public decimal TotalPrice { get; set; }
 		public DateTime CreatedDate { get; set; }
+		public Guid IdempotentToken { get; set; }
 	}
 }
